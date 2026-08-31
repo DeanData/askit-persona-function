@@ -24,7 +24,7 @@ Running lab notebook. Everything load-bearing gets written here the moment it ha
 
 ## Claude Code: plausible-but-wrong moments
 
-(none yet — log the instant one happens, with how it was caught)
+- 2026-08-31 — Proposed a 2×2 (risk-orientation × sophistication) design for the investing-forum audiences and labeled fatFIRE as "the intersectional audience." This was inconsistent: with a full 2×2, *every* cell (personalfinance, wallstreetbets, fatFIRE, thetagang) is equally defined by both attributes, so none is uniquely "the" compound one — the design erased the single-vs-compound contrast the requirement ("at least one audience must be an intersection... rather than a single attribute") implies. Candidate caught it by asking "isn't by your logic the others also an intersection in the same way?" Fix: made risk-orientation the single defining attribute for personalfinance/wallstreetbets/povertyfinance (sophistication left mixed/unspecified, matching the guidelines' own worked example), and reserved the deliberate two-attribute combination for fatFIRE (dev, intersectional) and thetagang (held-out, tests whether the compound pattern generalizes rather than being memorized from fatFIRE alone).
 
 ## Rough timestamps per phase
 
