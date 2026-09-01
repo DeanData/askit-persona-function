@@ -46,7 +46,14 @@ same space.
 ## 3. Ground truth / reference
 
 The real audience samples already pulled and committed (`data/finance_forums/*.jsonl`,
-250 unique real posts per audience) are the ground truth. This is used two ways:
+250 unique real posts per audience) are the ground truth, split into two disjoint,
+fixed-seed pools (`src/split_fewshot_eval.py`): an **eval pool** (242/audience) used only
+to compute the real reference statistics below, and a **few-shot pool** (8/audience) used
+only in Part 2's improved-condition prompts. The two are never the same posts — see
+WORKLOG.md for why this split exists (a caught contamination risk: using the same real
+text as both prompt examples and evaluation reference would let the improved condition
+score better by echoing its own scoring reference, not by generalizing). This is used
+two ways:
 
 1. As the empirical basis for the axis analysis above (already done).
 2. As the **reference distribution** every generated-text statistic below is compared
