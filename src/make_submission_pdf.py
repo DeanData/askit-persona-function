@@ -3,7 +3,6 @@
 CLAUDE_CODE_WAS_WRONG.md paragraph, a METRIC.md link, Part 3 status, and the
 required audience/persona descriptions.
 """
-import json
 import re
 from pathlib import Path
 
@@ -42,35 +41,53 @@ def render_markdown_body(md_text, story, skip_first_h1=False):
     paragraphs, everything else treated as body text."""
     lines = md_text.strip("\n").split("\n")
     para_buf = []
+    list_buf = []
     first_h1_seen = False
 
-    def flush():
+    def flush_para():
         if para_buf:
             joined = " ".join(para_buf).strip()
             if joined:
                 story.append(Paragraph(md_inline_to_reportlab(joined), styles["Body"]))
             para_buf.clear()
 
+    def flush_list():
+        if list_buf:
+            items = [ListItem(Paragraph(md_inline_to_reportlab(t), styles["Body"])) for t in list_buf]
+            story.append(ListFlowable(items, bulletType="bullet", leftIndent=16))
+            story.append(Spacer(1, 6))
+            list_buf.clear()
+
     for line in lines:
         stripped = line.strip()
         if not stripped:
-            flush()
+            flush_para()
+            flush_list()
+            continue
+        if stripped.startswith("- "):
+            flush_para()
+            list_buf.append(stripped[2:])
+            continue
+        if list_buf:
+            # wrapped continuation of the current list item's text
+            list_buf[-1] = list_buf[-1] + " " + stripped
             continue
         if stripped.startswith("# "):
-            flush()
+            flush_para()
             if skip_first_h1 and not first_h1_seen:
                 first_h1_seen = True
                 continue
             story.append(Paragraph(md_inline_to_reportlab(stripped[2:]), styles["H1"]))
         elif stripped.startswith("## "):
-            flush()
+            flush_para()
             story.append(Paragraph(md_inline_to_reportlab(stripped[3:]), styles["H2"]))
         elif stripped.startswith("*") and stripped.endswith("*") and not stripped.startswith("**"):
-            flush()
+            flush_para()
             story.append(Paragraph(md_inline_to_reportlab(stripped), styles["Small"]))
         else:
             para_buf.append(stripped)
-    flush()
+    flush_para()
+    flush_list()
 
 
 def main():
@@ -86,12 +103,6 @@ def main():
         f'Metric, committed before any text was generated: '
         f'<link href="{REPO_URL}/blob/main/METRIC.md" color="blue">{REPO_URL}/blob/main/METRIC.md</link>',
         styles["LinkLine"]))
-    story.append(Paragraph(
-        "<b>Part 3 (slow research) status:</b> not yet completed at the time of this "
-        "submission. See REPORT.md's Part 3 section below for the current status; if "
-        "completed later in the 5-hour budget, the repository's REPORT.md will reflect "
-        "the finished version even if this PDF was generated earlier.",
-        styles["Body"]))
     story.append(HRFlowable(width="100%", color=colors.lightgrey, spaceBefore=6, spaceAfter=12))
 
     # --- REPORT.md ---
@@ -109,39 +120,15 @@ def main():
     wrong_md = (ROOT / "CLAUDE_CODE_WAS_WRONG.md").read_text()
     render_markdown_body(wrong_md, story)
 
-    # --- Audience descriptions (required deliverable) ---
+    # --- Audience & persona descriptions (required deliverable; submitted via the repo) ---
     story.append(HRFlowable(width="100%", color=colors.lightgrey, spaceBefore=6, spaceAfter=12))
-    story.append(Paragraph("Audience descriptions", styles["H1"]))
+    story.append(Paragraph("Audience and persona descriptions", styles["H1"]))
     story.append(Paragraph(
-        "Population-level descriptions fed to f() as one of its two inputs. "
-        f'Full file: <link href="{REPO_URL}/blob/main/data/audiences.json" color="blue">'
-        f'data/audiences.json</link>.', styles["Body"]))
-    audiences = json.loads((ROOT / "data" / "audiences.json").read_text())
-    for name, aud in audiences.items():
-        story.append(Paragraph(f"{name} <font size=8 color='gray'>({aud['role']})</font>", styles["H2"]))
-        story.append(Paragraph(md_inline_to_reportlab(aud["description"]), styles["Body"]))
-
-    # --- Persona descriptions (required deliverable) ---
-    story.append(HRFlowable(width="100%", color=colors.lightgrey, spaceBefore=6, spaceAfter=12))
-    story.append(Paragraph("Persona descriptions (sample)", styles["H1"]))
-    story.append(Paragraph(
-        "One individual drawn from an audience, the other of f()'s two inputs. Structured "
-        "schema (age, age-conditioned occupation, region, family status, one open-ended "
-        "detail) rendered through a fixed template — full design rationale in WORKLOG.md. "
-        "40 personas per audience, 200 total, fixed seed, shared roster across every "
-        f'condition. Full roster: <link href="{REPO_URL}/tree/main/data/personas" '
-        f'color="blue">data/personas/</link>. Two samples below, one per risk-orientation:',
-        styles["Body"]))
-    samples = [
-        ("personalfinance",
-         "57, engaged, lives in Seattle, Washington, works as a nurse practitioner. "
-         "Recently adopted a rescue dog."),
-        ("wallstreetbets",
-         "31, divorced, shares custody of one child, lives in a small town in rural "
-         "Minnesota, works as a physical therapist. Started taking pottery classes recently."),
-    ]
-    items = [ListItem(Paragraph(f"<b>{a}</b>: {t}", styles["Body"])) for a, t in samples]
-    story.append(ListFlowable(items, bulletType="bullet"))
+        "The two inputs to f(). Submitted in the repository, not reproduced here: "
+        f'audience descriptions — <link href="{REPO_URL}/blob/main/data/audiences.json" '
+        f'color="blue">data/audiences.json</link>; persona descriptions (200 personas, '
+        f'40/audience) — <link href="{REPO_URL}/tree/main/data/personas" color="blue">'
+        f'data/personas/</link>.', styles["Body"]))
 
     doc = SimpleDocTemplate(str(OUT_PATH), pagesize=LETTER,
                              topMargin=0.7 * inch, bottomMargin=0.7 * inch,

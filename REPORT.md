@@ -80,17 +80,14 @@ otherwise.*
 
 ## What we'd do with another week
 
-Filter self-labeled examples from the few-shot pool and rerun, to isolate whether the
-between-separation regression was a few-shot-mechanism problem or specifically the
-self-labeling leakage. Add a third, topic-neutral elicitation context to test whether
-audience voice survives outside finance-adjacent situations — the current two contexts
-can't distinguish that. Relax the demographically-uniform persona design (named as a
-blind spot in `METRIC.md`) to test whether real audiences' demographic differences, not
-just voice, are driving some of the fidelity gap. Re-run the classifier-style separation
-check from Phase 1 directly on generated text (not just real text) with cross-validation
-instead of a single split, now that we have a reason to trust it at this sample size.
-Widen the audience set beyond one dataset (investing forums) to check whether the metric
-and findings generalize to a genuinely different domain.
+- Build and test the actual Part 3 mechanism (steering vectors or a per-audience LoRA on
+  a local model) instead of leaving it as a proposal.
+- Go after the within-audience collapse directly — it was the main failure — and test
+  whether it's a limit of the prompt or of the model.
+- Make the personas demographically realistic per audience, to separate demographic
+  mismatch from real voice mismatch.
+- Add a content/meaning axis to the metric, not just style, since matching how audiences
+  write isn't the same as matching what they talk about.
 
 *The required paragraph on where Claude Code was plausible but wrong now lives in its own
 file, `CLAUDE_CODE_WAS_WRONG.md`, as a distinct deliverable.*
