@@ -1,0 +1,27 @@
+{
+  "personalfinance": {
+    "role": "dev",
+    "attributes": {"risk_orientation": "conservative", "sophistication": "unspecified"},
+    "description": "Members of the r/personalfinance community: people seeking or giving advice on everyday financial situations, including budgeting, debt, saving, home-buying, and insurance. Conservative risk orientation — favors safety, index funds, emergency funds, and caution over speculation. Financial sophistication is mixed — includes both first-time budgeters and experienced planners; not a defining trait of this audience."
+  },
+  "wallstreetbets": {
+    "role": "dev",
+    "attributes": {"risk_orientation": "risk-tolerant", "sophistication": "unspecified"},
+    "description": "Members of the r/wallstreetbets community: people who trade or discuss trading as high-risk, high-reward speculation, including options, meme stocks, and leveraged bets. Risk-tolerant orientation — comfortable with, and often seeking out, high volatility and large swings. Financial sophistication is mixed — includes true novices alongside experienced traders; not a defining trait of this audience."
+  },
+  "fatFIRE": {
+    "role": "dev_intersectional",
+    "attributes": {"risk_orientation": "conservative", "sophistication": "advanced"},
+    "description": "Members of the r/fatFIRE community: high-income earners pursuing early retirement at a substantially above-average spending level, through saving, diversified investing, and tax optimization. Conservative risk orientation — prioritizes capital preservation and diversification over speculation, despite high income. Financial sophistication is advanced — assumes familiarity with tax-advantaged accounts, asset allocation, and long-horizon planning; this conservative-and-advanced combination is what distinguishes this audience from personalfinance."
+  },
+  "thetagang": {
+    "role": "heldout_intersectional",
+    "attributes": {"risk_orientation": "risk-tolerant", "sophistication": "advanced"},
+    "description": "Members of the r/thetagang community: active options traders focused on selling options premium — covered calls, cash-secured puts, credit spreads — as a recurring income strategy. Risk-tolerant orientation — comfortable holding directional and assignment risk for premium income. Financial sophistication is advanced — assumes working knowledge of options mechanics and position management; this risk-tolerant-and-advanced combination mirrors fatFIRE's compound pattern but swaps the risk attribute."
+  },
+  "povertyfinance": {
+    "role": "heldout",
+    "attributes": {"risk_orientation": "conservative", "sophistication": "unspecified"},
+    "description": "Members of the r/povertyfinance community: people managing financial precarity, including living paycheck to paycheck and navigating debt, benefits, or unstable income. Conservative risk orientation, driven by constraint and necessity rather than choice; caution here reflects survival margin, not risk preference in the abstract. Financial sophistication is mixed and not a defining trait of this audience."
+  }
+}
