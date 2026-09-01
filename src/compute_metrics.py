@@ -149,7 +149,9 @@ def main():
     ap.add_argument("--conditions", required=True,
                      help="comma-separated name:path pairs, e.g. baseline:data/generations/dev/baseline.jsonl")
     ap.add_argument("--audiences", default=",".join(AUDIENCES))
+    ap.add_argument("--json-out", default=None, help="optional path to dump a structured summary")
     args = ap.parse_args()
+    summary = {"audiences": [], "real": {}, "conditions": {}}
 
     audiences = args.audiences.split(",")
     conditions = {}
@@ -257,6 +259,29 @@ def main():
             print(f"  centroid_fid[{a}]: [{lo:.3f}, {hi:.3f}]")
         lo, hi = ci["between_fid"]
         print(f"  between_fid:        [{lo:.3f}, {hi:.3f}]")
+
+        summary["conditions"][cond] = {
+            "n_per_audience": {a: len(gen_texts[cond][a]) for a in audiences},
+            "n_flagged": flagged_counts[cond],
+            "centroid_fid": centroid_fid,
+            "within_fid": within_fid,
+            "between_fid": between_fid,
+            "mare_within": mare_within,
+            "mare_centroid": mare_centroid,
+            "ci": {
+                "within_fid": {a: ci[f"within_fid_{a}"] for a in audiences},
+                "centroid_fid": {a: ci[f"centroid_fid_{a}"] for a in audiences},
+                "between_fid": ci["between_fid"],
+            },
+        }
+
+    summary["audiences"] = audiences
+    summary["real"] = {"B_real": B_real, "W_real": W_real, "n_eval": {a: len(real_texts[a]) for a in audiences}}
+
+    if args.json_out:
+        with open(args.json_out, "w") as f:
+            json.dump(summary, f, indent=2)
+        print(f"\nwrote summary -> {args.json_out}")
 
 
 if __name__ == "__main__":

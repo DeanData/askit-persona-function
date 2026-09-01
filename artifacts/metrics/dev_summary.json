@@ -1,0 +1,140 @@
+{
+  "audiences": [
+    "personalfinance",
+    "wallstreetbets",
+    "fatFIRE"
+  ],
+  "real": {
+    "B_real": 4.1649974432965475,
+    "W_real": {
+      "personalfinance": 2.9138601461412255,
+      "wallstreetbets": 5.4364391194189965,
+      "fatFIRE": 3.132661463640103
+    },
+    "n_eval": {
+      "personalfinance": 242,
+      "wallstreetbets": 242,
+      "fatFIRE": 242
+    }
+  },
+  "conditions": {
+    "baseline": {
+      "n_per_audience": {
+        "personalfinance": 80,
+        "wallstreetbets": 77,
+        "fatFIRE": 77
+      },
+      "n_flagged": {
+        "personalfinance": 0,
+        "wallstreetbets": 3,
+        "fatFIRE": 3
+      },
+      "centroid_fid": {
+        "personalfinance": 0.4936764085805514,
+        "wallstreetbets": 0.3737917169806619,
+        "fatFIRE": 0.5165178232852148
+      },
+      "within_fid": {
+        "personalfinance": -0.17435572011875766,
+        "wallstreetbets": -0.43317964075181964,
+        "fatFIRE": -0.11942697896635253
+      },
+      "between_fid": -0.19600763847667266,
+      "mare_within": 0.2423207799456433,
+      "mare_centroid": 0.46132864961547604,
+      "ci": {
+        "within_fid": {
+          "personalfinance": [
+            -0.22434131603596696,
+            -0.1439481343015422
+          ],
+          "wallstreetbets": [
+            -0.48409379694087884,
+            -0.39775966803539603
+          ],
+          "fatFIRE": [
+            -0.18347260087107234,
+            -0.06724656441531393
+          ]
+        },
+        "centroid_fid": {
+          "personalfinance": [
+            0.43668771544883,
+            0.5677663231408423
+          ],
+          "wallstreetbets": [
+            0.3409626792546512,
+            0.4078011722840514
+          ],
+          "fatFIRE": [
+            0.4781258249923698,
+            0.5701860202286381
+          ]
+        },
+        "between_fid": [
+          -0.22486078635324966,
+          -0.16392587218579344
+        ]
+      }
+    },
+    "fewshot": {
+      "n_per_audience": {
+        "personalfinance": 80,
+        "wallstreetbets": 79,
+        "fatFIRE": 68
+      },
+      "n_flagged": {
+        "personalfinance": 0,
+        "wallstreetbets": 1,
+        "fatFIRE": 12
+      },
+      "centroid_fid": {
+        "personalfinance": 0.4911850077462426,
+        "wallstreetbets": 0.42057240939295587,
+        "fatFIRE": 0.42521802852858415
+      },
+      "within_fid": {
+        "personalfinance": -0.15757921836097064,
+        "wallstreetbets": -0.4256984180406551,
+        "fatFIRE": -0.14620564166499883
+      },
+      "between_fid": -0.24450969749780033,
+      "mare_within": 0.24316109268887487,
+      "mare_centroid": 0.4456584818892608,
+      "ci": {
+        "within_fid": {
+          "personalfinance": [
+            -0.2290389984614106,
+            -0.10468347530115155
+          ],
+          "wallstreetbets": [
+            -0.469587832774328,
+            -0.3960266605700882
+          ],
+          "fatFIRE": [
+            -0.20783949408093721,
+            -0.11573953148726206
+          ]
+        },
+        "centroid_fid": {
+          "personalfinance": [
+            0.4321753596090817,
+            0.5618305407419756
+          ],
+          "wallstreetbets": [
+            0.39549413179223847,
+            0.452605622321552
+          ],
+          "fatFIRE": [
+            0.3707705919692008,
+            0.49948761883928344
+          ]
+        },
+        "between_fid": [
+          -0.2728597414880786,
+          -0.21674526155710888
+        ]
+      }
+    }
+  }
+}

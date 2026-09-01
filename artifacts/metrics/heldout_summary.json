@@ -1,0 +1,113 @@
+{
+  "audiences": [
+    "thetagang",
+    "povertyfinance"
+  ],
+  "real": {
+    "B_real": 4.687137138327119,
+    "W_real": {
+      "thetagang": 4.677709285671341,
+      "povertyfinance": 4.036316368769263
+    },
+    "n_eval": {
+      "thetagang": 242,
+      "povertyfinance": 242
+    }
+  },
+  "conditions": {
+    "baseline": {
+      "n_per_audience": {
+        "thetagang": 80,
+        "povertyfinance": 80
+      },
+      "n_flagged": {
+        "thetagang": 0,
+        "povertyfinance": 0
+      },
+      "centroid_fid": {
+        "thetagang": 0.4552154985707716,
+        "povertyfinance": 0.35482317024864257
+      },
+      "within_fid": {
+        "thetagang": -0.4545664086184997,
+        "povertyfinance": -0.3769649000508998
+      },
+      "between_fid": -0.4199217040241002,
+      "mare_within": 0.4157656543346997,
+      "mare_centroid": 0.40501933440970705,
+      "ci": {
+        "within_fid": {
+          "thetagang": [
+            -0.49528190266175165,
+            -0.42482803473210484
+          ],
+          "povertyfinance": [
+            -0.4246161955278203,
+            -0.34657051950465434
+          ]
+        },
+        "centroid_fid": {
+          "thetagang": [
+            0.43789582717633213,
+            0.4784175590781784
+          ],
+          "povertyfinance": [
+            0.2965119273148997,
+            0.4148856802251651
+          ]
+        },
+        "between_fid": [
+          -0.4491185857861045,
+          -0.3907110782506847
+        ]
+      }
+    },
+    "fewshot": {
+      "n_per_audience": {
+        "thetagang": 80,
+        "povertyfinance": 80
+      },
+      "n_flagged": {
+        "thetagang": 0,
+        "povertyfinance": 0
+      },
+      "centroid_fid": {
+        "thetagang": 0.4477724247511111,
+        "povertyfinance": 0.30970079646736415
+      },
+      "within_fid": {
+        "thetagang": -0.41586418345351067,
+        "povertyfinance": -0.344921950064151
+      },
+      "between_fid": -0.38483998821516646,
+      "mare_within": 0.38039306675883083,
+      "mare_centroid": 0.37873661060923763,
+      "ci": {
+        "within_fid": {
+          "thetagang": [
+            -0.4620514033237285,
+            -0.3825612450826653
+          ],
+          "povertyfinance": [
+            -0.3980021797579801,
+            -0.3136856606198783
+          ]
+        },
+        "centroid_fid": {
+          "thetagang": [
+            0.4272025213510858,
+            0.47784815109620554
+          ],
+          "povertyfinance": [
+            0.2618829246975192,
+            0.3693814015973617
+          ]
+        },
+        "between_fid": [
+          -0.4129411474025739,
+          -0.355812742987775
+        ]
+      }
+    }
+  }
+}
