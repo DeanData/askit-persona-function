@@ -30,6 +30,25 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def load_dotenv(path):
+    """Minimal .env loader (no python-dotenv dependency) — only fills vars not
+    already set in the environment, so an explicit `export` still wins."""
+    if not path.exists():
+        return
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key, value = key.strip(), value.strip()
+        if key and value and key not in os.environ:
+            os.environ[key] = value
+
+
+load_dotenv(ROOT / ".env")
+
 AUDIENCES_PATH = ROOT / "data" / "audiences.json"
 CONTEXTS_PATH = ROOT / "data" / "contexts.json"
 PERSONAS_DIR = ROOT / "data" / "personas"
