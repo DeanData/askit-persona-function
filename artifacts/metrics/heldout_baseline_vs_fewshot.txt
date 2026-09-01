@@ -1,0 +1,40 @@
+=== self-labeling check (flagged texts excluded from fidelity computation below) ===
+baseline: 0 / 160 flagged
+fewshot: 0 / 160 flagged
+
+=== real reference (eval pool, n per audience: [242, 242]) ===
+B_real (between, real) = 4.6871
+  W_real[thetagang] = 4.6777
+  W_real[povertyfinance] = 4.0363
+
+=== condition: baseline ===
+n per audience: [80, 80]
+audience          centroid_fid  within_fid
+thetagang                0.455      -0.455
+povertyfinance           0.355      -0.377
+between_fid (global) = -0.420
+MARE (within, aggregate)   = 0.416
+MARE (centroid, aggregate) = 0.405
+
+bootstrap 95% CIs (1000 resamples):
+  within_fid[thetagang]:   [-0.495, -0.425]
+  within_fid[povertyfinance]:   [-0.425, -0.347]
+  centroid_fid[thetagang]: [0.438, 0.478]
+  centroid_fid[povertyfinance]: [0.297, 0.415]
+  between_fid:        [-0.449, -0.391]
+
+=== condition: fewshot ===
+n per audience: [80, 80]
+audience          centroid_fid  within_fid
+thetagang                0.448      -0.416
+povertyfinance           0.310      -0.345
+between_fid (global) = -0.385
+MARE (within, aggregate)   = 0.380
+MARE (centroid, aggregate) = 0.379
+
+bootstrap 95% CIs (1000 resamples):
+  within_fid[thetagang]:   [-0.462, -0.383]
+  within_fid[povertyfinance]:   [-0.398, -0.314]
+  centroid_fid[thetagang]: [0.427, 0.478]
+  centroid_fid[povertyfinance]: [0.262, 0.369]
+  between_fid:        [-0.413, -0.356]

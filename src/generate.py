@@ -33,8 +33,10 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def load_dotenv(path):
-    """Minimal .env loader (no python-dotenv dependency) — only fills vars not
-    already set in the environment, so an explicit `export` still wins."""
+    """Minimal .env loader (no python-dotenv dependency). .env deliberately
+    overrides any pre-existing environment variable of the same name -- a
+    stale OPENAI_API_KEY exported from ~/.zshrc was silently shadowing a
+    corrected .env value, so project-local config wins here on purpose."""
     if not path.exists():
         return
     for line in path.read_text().splitlines():
@@ -43,7 +45,7 @@ def load_dotenv(path):
             continue
         key, _, value = line.partition("=")
         key, value = key.strip(), value.strip()
-        if key and value and key not in os.environ:
+        if key and value:
             os.environ[key] = value
 
 

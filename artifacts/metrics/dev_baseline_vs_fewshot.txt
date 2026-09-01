@@ -1,0 +1,51 @@
+=== self-labeling check (flagged texts excluded from fidelity computation below) ===
+baseline: 6 / 240 flagged
+  wallstreetbets: 3 flagged, 77 kept
+  fatFIRE: 3 flagged, 77 kept
+fewshot: 13 / 240 flagged
+  wallstreetbets: 1 flagged, 79 kept
+  fatFIRE: 12 flagged, 68 kept
+
+=== real reference (eval pool, n per audience: [242, 242, 242]) ===
+B_real (between, real) = 4.1650
+  W_real[personalfinance] = 2.9139
+  W_real[wallstreetbets] = 5.4364
+  W_real[fatFIRE] = 3.1327
+
+=== condition: baseline ===
+n per audience: [80, 77, 77]
+audience          centroid_fid  within_fid
+personalfinance          0.494      -0.174
+wallstreetbets           0.374      -0.433
+fatFIRE                  0.517      -0.119
+between_fid (global) = -0.196
+MARE (within, aggregate)   = 0.242
+MARE (centroid, aggregate) = 0.461
+
+bootstrap 95% CIs (1000 resamples):
+  within_fid[personalfinance]:   [-0.224, -0.144]
+  within_fid[wallstreetbets]:   [-0.484, -0.398]
+  within_fid[fatFIRE]:   [-0.183, -0.067]
+  centroid_fid[personalfinance]: [0.437, 0.568]
+  centroid_fid[wallstreetbets]: [0.341, 0.408]
+  centroid_fid[fatFIRE]: [0.478, 0.570]
+  between_fid:        [-0.225, -0.164]
+
+=== condition: fewshot ===
+n per audience: [80, 79, 68]
+audience          centroid_fid  within_fid
+personalfinance          0.491      -0.158
+wallstreetbets           0.421      -0.426
+fatFIRE                  0.425      -0.146
+between_fid (global) = -0.245
+MARE (within, aggregate)   = 0.243
+MARE (centroid, aggregate) = 0.446
+
+bootstrap 95% CIs (1000 resamples):
+  within_fid[personalfinance]:   [-0.229, -0.105]
+  within_fid[wallstreetbets]:   [-0.470, -0.396]
+  within_fid[fatFIRE]:   [-0.208, -0.116]
+  centroid_fid[personalfinance]: [0.432, 0.562]
+  centroid_fid[wallstreetbets]: [0.395, 0.453]
+  centroid_fid[fatFIRE]: [0.371, 0.499]
+  between_fid:        [-0.273, -0.217]
