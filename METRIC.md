@@ -149,6 +149,17 @@ per condition is the one clean summary number.
 5. **n=40-50 personas per audience** bounds statistical precision regardless of how good
    the underlying generation is — addressed with bootstrap CIs (§6), not eliminated by
    them.
+6. **Personas are demographically uniform across audiences by design** (age, region,
+   family status, and the open-ended detail are drawn from the same shared distributions
+   for every audience — see `src/generate_personas.py`), specifically to isolate the
+   audience description as the only systematically-varying input. Real audiences almost
+   certainly differ demographically too (e.g. real fatFIRE posters likely skew older/more
+   established than real personalfinance posters), and some of that real demographic
+   pattern is plausibly entangled with the real stylometric signature this metric
+   compares against. So part of any fidelity-to-real gap may reflect a demographic
+   mismatch between our uniform personas and the real population's actual demographics,
+   not a failure of the function to produce the right *voice* for a given audience
+   description. This metric cannot distinguish those two causes from each other.
 
 ## 8. Held-out discipline
 
