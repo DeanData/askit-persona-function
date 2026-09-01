@@ -1,0 +1,10 @@
+{
+  "structural": {
+    "label": "structural",
+    "prompt": "Someone in your life has $10,000 they won't need for a few years and asks what to do with it. What do you tell them?"
+  },
+  "surface": {
+    "label": "surface",
+    "prompt": "Give a quick update on how you're feeling about your money this week."
+  }
+}
