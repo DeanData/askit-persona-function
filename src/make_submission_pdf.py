@@ -130,6 +130,22 @@ def main():
         f'40/audience) — <link href="{REPO_URL}/tree/main/data/personas" color="blue">'
         f'data/personas/</link>.', styles["Body"]))
 
+    # --- Time log ---
+    story.append(HRFlowable(width="100%", color=colors.lightgrey, spaceBefore=6, spaceAfter=12))
+    story.append(Paragraph("Time log", styles["H1"]))
+    story.append(Paragraph(
+        "Rough, net effort against the 5-hour budget (spread over more wall-clock than "
+        "that, across multiple sessions).", styles["Body"]))
+    time_items = [
+        "1h — understanding the task and overall planning",
+        "Working with Claude Code: 0.5h logistics/scaffolding, 1.5h Part 1, "
+        "1h Part 2, 1h deliverables",
+    ]
+    story.append(ListFlowable(
+        [ListItem(Paragraph(t, styles["Body"])) for t in time_items],
+        bulletType="bullet", leftIndent=16))
+    story.append(Paragraph("<b>Net: ~5 hours.</b>", styles["Body"]))
+
     doc = SimpleDocTemplate(str(OUT_PATH), pagesize=LETTER,
                              topMargin=0.7 * inch, bottomMargin=0.7 * inch,
                              leftMargin=0.75 * inch, rightMargin=0.75 * inch)

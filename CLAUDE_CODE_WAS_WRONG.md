@@ -8,5 +8,5 @@ construction, not by design, quietly erasing the single-vs-compound contrast the
 requirement asks for. The error surfaced when it was challenged directly — by that logic,
 aren't the other audiences equally intersections? The fix was to make risk-orientation
 the sole defining attribute for the single-attribute audiences, reserving the deliberate
-two-attribute combination for fatFIRE (dev) and thetagang (held-out). Caught and logged
-in WORKLOG.md the moment it came up.
+two-attribute combination for fatFIRE (dev) and thetagang (held-out). Caught and fixed
+early.

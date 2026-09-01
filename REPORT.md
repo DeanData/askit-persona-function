@@ -1,8 +1,7 @@
 # REPORT.md
 
-*Full reasoning, dead ends, and every decision's rationale live in `WORKLOG.md`
-(chronological) and `METRIC.md` (the metric, committed before any generation). This
-report summarizes; those are the record.*
+*The metric was committed in `METRIC.md` before any text was generated. This report
+summarizes the work; full detail is in the repository.*
 
 ## The function
 
@@ -80,14 +79,11 @@ otherwise.*
 
 ## What we'd do with another week
 
-- Build and test the actual Part 3 mechanism (steering vectors or a per-audience LoRA on
-  a local model) instead of leaving it as a proposal.
+- Write a proper Part 3 proposal — a real non-prompt mechanism (steering vectors or a
+  per-audience LoRA on a local model) — and then build and test it.
 - Go after the within-audience collapse directly — it was the main failure — and test
   whether it's a limit of the prompt or of the model.
 - Make the personas demographically realistic per audience, to separate demographic
   mismatch from real voice mismatch.
 - Add a content/meaning axis to the metric, not just style, since matching how audiences
   write isn't the same as matching what they talk about.
-
-*The required paragraph on where Claude Code was plausible but wrong now lives in its own
-file, `CLAUDE_CODE_WAS_WRONG.md`, as a distinct deliverable.*
